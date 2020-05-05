@@ -9,14 +9,20 @@ Share a post
     {% else %}
         <h1>Share "{{post.title}}" by e-mail</h1>
         <form method="post">
-            {% for field in form %}
-                <div>
-                    {{field.errors}}
-                    {{field.label_tag}} {{field}}
-                </div>
-            {% endfor %}
+            <div>
+                <label for="id_name">Name:</label> <input class="form-control" type="text" name={{form.name.name}} maxlength="25" id="id_name" required>
+            </div>
+            <div>
+                <label for="id_email">Email:</label> <input type="email" name={{form.email.name}} class="form-control" required id="id_email">
+            </div>
+            <div>
+                <label for="id_to">To:</label> <input type="email" required name={{form.to.name}} class="form-control" id="id_to">
+            </div>
+            <div>
+                <label for="id_comments">Comments:</label> <textarea name={{form.comments.name}} class="form-control" id="id_comments" cols="40" rows="10"></textarea>
+            </div>
             {% csrf_token %}
-            <input type="submit" value="Send e-mail">
+            <input class="btn btn-primary" type="submit" value="Send e-mail">
         </form>
     {% endif %}
 {% endblock content %}
