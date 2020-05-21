@@ -37,18 +37,31 @@
           </h2>
         {% endwith %}
 
-        <!-- Comments Form -->
-        <div class="card my-4">
+        {% if new_comment %}
+        <h5 class="card-header">Your comment has been added.</h5>
+        {% else %}
+          <div class="card my-4">
           <h5 class="card-header">Leave a Comment:</h5>
           <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+            <form method="post">
+            <div class="form-group">
+              <div>
+                    <label for="id_name">Name:</label> <input class="form-control" type="text" name={{comment_form.name.name}} maxlength="25" id="id_name" required>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+              <div>
+                    <label for="id_email">Email:</label> <input type="email" name={{comment_form.email.name}} class="form-control" required id="id_email">
+              </div>
+              <div>
+                    <label for="id_body">Comment:</label> <textarea name={{comment_form.body.name}} class="form-control" id="id_body" cols="40" rows="10"></textarea>
+              </div>
+            </div>
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Send comment">
+          </form>
           </div>
         </div>
+        {% endif %}
+        <!-- Comments Form -->
 
         {% for comment in comments %}
         <!-- Single Comment -->
@@ -62,15 +75,5 @@
         {% empty %}
           <p>There are no comments yet.</p>
         {% endfor %}
-        {% if new_comment %}
-          <h2>Your comment has been added.</h2>
-        {% else %}
-          <h2>Add a new comment.</h2>
-          <form method="post">
-            {{comment_form.as_p}}
-            {% csrf_token %}
-            <p><input type="submit" value="Add comment"></p>
-          </form>
-        {% endif %}
       </div>
 {% endblock content %}
