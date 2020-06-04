@@ -5,3 +5,9 @@ Hi! It is my example of blog application built on [django](https://github.com/dj
 ## Book
 
 **Book** - `"Django3 by example. Third edition"`. Antonio Mele.
+
+## License
+
+![GitHub](https://img.shields.io/github/license/mezgoodle/django-site)
+
+MIT © [mezgoodle](https://github.com/mezgoodle)
